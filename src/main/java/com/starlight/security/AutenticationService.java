@@ -1,4 +1,4 @@
-package com.startlight.security;
+package com.starlight.security;
 
 import java.util.List;
 
@@ -10,23 +10,16 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
 
-@Service
 public class AutenticationService implements UserDetailsService {
 
-	private EntityManager entityManager;
-
 	@PersistenceContext
-	public void setEntityManager(EntityManager em) {
-		this.entityManager = em;
-	}
+	EntityManager entityManager;
 
 	public UserDetails loadUserByUsername(String userName)
 			throws UsernameNotFoundException, DataAccessException {
 
-		List<User> users = entityManager.createNamedQuery("User.findAll",
-				User.class).getResultList();
+		List<User> users = entityManager.createNamedQuery("User.findAll").getResultList();
 		User user = null;
 
 		for (User userSearch : users) {
