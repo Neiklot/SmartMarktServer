@@ -10,7 +10,9 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
+@Service
 public class AutenticationService implements UserDetailsService {
 
 	@PersistenceContext
@@ -35,5 +37,13 @@ public class AutenticationService implements UserDetailsService {
 
 		
 		return user;
+	}
+
+	public EntityManager getEntityManager() {
+		return entityManager;
+	}
+
+	public void setEntityManager(EntityManager entityManager) {
+		this.entityManager = entityManager;
 	}
 }

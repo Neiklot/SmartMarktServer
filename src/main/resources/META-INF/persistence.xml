@@ -5,10 +5,10 @@
 
 	<persistence-unit name="defaultPersistenceUnit"
 		transaction-type="RESOURCE_LOCAL">
-		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
-			<property name="hibernate.connection.url" value="jdbc:mysql://localhost/altair" />
+			<property name="hibernate.connection.url" value="jdbc:mysql://localhost/smartmarkt" />
 			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
 			<property name="hibernate.connection.username" value="root" />
 			<property name="hibernate.connection.password" value="" />
