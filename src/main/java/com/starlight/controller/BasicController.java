@@ -2,9 +2,12 @@ package com.starlight.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.starlight.model.ContextBodyRequest;
 
 @Controller
 public class BasicController {
@@ -17,8 +20,8 @@ public class BasicController {
 		return new ModelAndView("welcome", "message", message);
 	}
 	
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login(ModelMap model) {
-		return "login";
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String login(@RequestBody ContextBodyRequest contextBodyRequest,ModelMap model) {
+		return "OK";
 }
 }
