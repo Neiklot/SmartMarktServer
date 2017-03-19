@@ -17,7 +17,7 @@ public class BasicController {
 		String message = "<br><div style='text-align:center;'>"
 				+ "<h3>********** Hello World, Spring MVC Tutorial</h3>This message is coming from CrunchifyHelloWorld.java **********</div><br><br>";
 		
-		return new ModelAndView("welcome", "message", message);
+		return new ModelAndView("index", "message", message);
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
