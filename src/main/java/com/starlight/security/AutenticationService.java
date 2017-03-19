@@ -18,9 +18,11 @@ public class AutenticationService implements UserDetailsService {
 	@PersistenceContext
 	EntityManager entityManager;
 
+	@SuppressWarnings("unused")
 	public UserDetails loadUserByUsername(String userName)
 			throws UsernameNotFoundException, DataAccessException {
 
+		@SuppressWarnings("unchecked")
 		List<User> users = entityManager.createNamedQuery("User.findAll").getResultList();
 		User user = null;
 
