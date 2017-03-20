@@ -42,10 +42,13 @@
 		<property name="persistenceUnitName" value="defaultPersistenceUnit" />
 	</bean>
 
-	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+	<!--<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>-->
+	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManage">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
-
+	
 	<tx:annotation-driven transaction-manager="transactionManager" />
 
 	<mvc:resources mapping="/resources/**" location="/resources/" />
