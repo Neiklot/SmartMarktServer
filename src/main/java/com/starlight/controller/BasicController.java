@@ -12,16 +12,21 @@ import com.starlight.model.ContextBodyRequest;
 @Controller
 public class BasicController {
 
-	@RequestMapping(value = "/", method = RequestMethod.GET) 
-	 public ModelAndView cliente() {
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public ModelAndView cliente() {
 		String message = "<br><div style='text-align:center;'>"
 				+ "<h3>********** Hello World, Spring MVC Tutorial</h3>This message is coming from CrunchifyHelloWorld.java **********</div><br><br>";
-		
+
 		return new ModelAndView("index", "message", message);
 	}
-	
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(@RequestBody ContextBodyRequest contextBodyRequest,ModelMap model) {
+
+	@RequestMapping(value = "/loginApp", method = RequestMethod.POST)
+	public String loginApp(@RequestBody ContextBodyRequest contextBodyRequest, ModelMap model) {
 		return "OK";
-}
+	}
+
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public ModelAndView loginWeb(ModelMap model) {
+		return new ModelAndView("login");
+	}
 }
