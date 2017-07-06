@@ -20,6 +20,12 @@ public class Product implements Serializable{
 
 	@Column
 	private String name;
+	
+	@Column
+	private String image;
+	
+	@Column
+	private String icon;
 
 	public long getId() {
 		return id;
@@ -35,5 +41,21 @@ public class Product implements Serializable{
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	public String getIcon() {
+		return icon;
+	}
+
+	public void setIcon(String icon) {
+		this.icon = icon;
 	}
 }
