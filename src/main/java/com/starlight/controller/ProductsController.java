@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -39,6 +40,13 @@ public class ProductsController {
 		List<Product> products = productService.getAllProducts();
 		return new ResponseEntity(products, HttpStatus.OK);
 	}
+	
+	@RequestMapping(value = "/product", method = RequestMethod.POST,consumes="application/json")
+	public ResponseEntity<?> createProduct(@RequestBody Product product ) {
+		Long idProduct=productService.createProduct(product);
+		return new ResponseEntity(idProduct, HttpStatus.OK);
+	}
+	
 
 	@RequestMapping(value = "/product/{idProduct}/getImage", method = RequestMethod.GET)
 	@ResponseBody

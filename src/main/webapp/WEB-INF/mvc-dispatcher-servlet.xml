@@ -16,7 +16,7 @@
 	<context:annotation-config />
 
 	<context:component-scan base-package="com.starlight" />
-
+	
 	<bean id="autenticationService" class="com.starlight.security.AutenticationService"></bean>
 
 	<bean id="messageSource"
@@ -42,15 +42,12 @@
 		<property name="persistenceUnitName" value="defaultPersistenceUnit" />
 	</bean>
 
-	<!--<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-		<property name="entityManagerFactory" ref="entityManagerFactory" />
-	</bean>-->
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
 	
-	<tx:annotation-driven transaction-manager="transactionManager" />
-
+		<tx:annotation-driven transaction-manager="transactionManager" />
+	
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 
 	<mvc:annotation-driven />
