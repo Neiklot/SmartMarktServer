@@ -40,20 +40,29 @@ public class ProductsController {
 		List<Product> products = productService.getAllProducts();
 		return new ResponseEntity(products, HttpStatus.OK);
 	}
-	
-	@RequestMapping(value = "/product", method = RequestMethod.POST,consumes="application/json")
-	public ResponseEntity<?> createProduct(@RequestBody Product product ) {
-		Long idProduct=productService.createProduct(product);
+
+	@RequestMapping(value = "/product", method = RequestMethod.POST, consumes = "application/json")
+	public ResponseEntity<?> createProduct(@RequestBody Product product) {
+		Long idProduct = productService.createProduct(product);
+		return new ResponseEntity(idProduct, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/product", method = RequestMethod.PUT, consumes = "application/json")
+	public ResponseEntity<?> modifyProduct(@RequestBody Product product) {
+		Long idProduct = productService.modifyProduct(product);
 		return new ResponseEntity(idProduct, HttpStatus.OK);
 	}
 	
-
 	@RequestMapping(value = "/product/{idProduct}/getImage", method = RequestMethod.GET)
 	@ResponseBody
 	public byte[] getImage(@PathVariable("idProduct") long idProduct, HttpServletRequest request) throws IOException {
 		String rpath = request.getRealPath("/resources/images/");
 		Product product = productService.getProducts(idProduct);
-		rpath = rpath + "/" + product.getImage(); // whatever path you used for storing the file
+		String image = product.getImage();
+		if (image == null || image.equalsIgnoreCase("null")) {
+			image = "nuevoProducto.jpg";
+		}
+		rpath = rpath + "/" + image; // whatever path you used for storing the file
 		Path path = Paths.get(rpath);
 		byte[] data = Files.readAllBytes(path);
 		return data;
@@ -62,11 +71,16 @@ public class ProductsController {
 	@RequestMapping(value = "/product/{idProduct}/getIcon", method = RequestMethod.GET)
 	@ResponseBody
 	public byte[] getIcon(@PathVariable("idProduct") long idProduct, HttpServletRequest request) throws IOException {
+		Path path = null;
 		String rpath = request.getRealPath("/resources/icons/");
 		Product product = productService.getProducts(idProduct);
-		rpath = rpath + "/" + product.getIcon(); // whatever path you used for storing the file
-		Path path = Paths.get(rpath);
-		byte[] data = Files.readAllBytes(path);
-		return data;
+		if (product.getIcon() != null) {
+			rpath = rpath + "/" + product.getIcon(); // whatever path you used for storing the file
+			path = Paths.get(rpath);
+		} else {
+			rpath = rpath + "/noCategory.png"; // whatever path you used for storing the file
+			path = Paths.get(rpath);
+		}
+		return Files.readAllBytes(path);
 	}
 }

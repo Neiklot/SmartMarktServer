@@ -33,4 +33,18 @@ public class ProductService {
 		em.persist(product);
 		return product.getId();
 	}
+	@Transactional
+	public Long modifyProduct(Product product) {
+		Product original=em.find(Product.class, product.getId());
+		
+		original.setCode(product.getCode());
+		original.setCountUncount(product.getCountUncount());
+		original.setIcon(product.getIcon());
+		original.setImage(product.getImage());
+		original.setInitialQuantity(product.getInitialQuantity());
+		original.setName(product.getName());
+		original.setStock(product.getStock());
+		
+		return product.getId();
+	}
 }

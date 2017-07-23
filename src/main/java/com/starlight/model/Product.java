@@ -11,7 +11,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.Transient;
 
 @Entity
 public class Product implements Serializable {
@@ -30,9 +29,21 @@ public class Product implements Serializable {
 
 	@Column
 	private String icon;
+	
+	@Column
+	private Long code;
+	
+	@Column
+	private Long stock;
+	
+	@Column
+	private Double initialQuantity;
+	
+	@Column
+	private int countUncount;
 
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "products")
-	private Set<Lista> listas = new HashSet<Lista>();
+//	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "products")
+//	private Set<Lista> listas = new HashSet<Lista>();
 
 	public long getId() {
 		return id;
@@ -64,6 +75,38 @@ public class Product implements Serializable {
 
 	public void setIcon(String icon) {
 		this.icon = icon;
+	}
+
+	public Long getCode() {
+		return code;
+	}
+
+	public void setCode(Long code) {
+		this.code = code;
+	}
+
+	public Long getStock() {
+		return stock;
+	}
+
+	public void setStock(Long stock) {
+		this.stock = stock;
+	}
+
+	public Double getInitialQuantity() {
+		return initialQuantity;
+	}
+
+	public void setInitialQuantity(Double initialQuantity) {
+		this.initialQuantity = initialQuantity;
+	}
+
+	public int getCountUncount() {
+		return countUncount;
+	}
+
+	public void setCountUncount(int countUncount) {
+		this.countUncount = countUncount;
 	}
 
 //	public Set<Lista> getListas() {
